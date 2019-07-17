@@ -6851,15 +6851,20 @@ extern int job_limits_check(job_record_t **job_pptr, bool check_min_time)
 			fail_reason = WAIT_PART_CONFIG;
 			break;
 		}
-	} else if (part_ptr->state_up == PARTITION_DOWN) {
+	}
+	if (fail_reason == WAIT_NO_REASON &&
+	    part_ptr->state_up == PARTITION_DOWN) {
 		debug2("%pJ requested down partition %s",
 		       job_ptr, part_ptr->name);
 		fail_reason = WAIT_PART_DOWN;
-	} else if (part_ptr->state_up == PARTITION_INACTIVE) {
+	}
+	if (fail_reason == WAIT_NO_REASON &&
+	    part_ptr->state_up == PARTITION_INACTIVE) {
 		debug2("%pJ requested inactive partition %s",
 		       job_ptr, part_ptr->name);
 		fail_reason = WAIT_PART_INACTIVE;
-	} else if (qos_ptr && assoc_ptr &&
+	}
+	if (fail_reason == WAIT_NO_REASON && qos_ptr && assoc_ptr &&
 		   (qos_ptr->flags & QOS_FLAG_ENFORCE_USAGE_THRES) &&
 		   (!fuzzy_equal(qos_ptr->usage_thres, NO_VAL))) {
 		if (!job_ptr->prio_factors) {
@@ -6879,7 +6884,8 @@ extern int job_limits_check(job_record_t **job_pptr, bool check_min_time)
 			debug2("%pJ exceeds usage threshold", job_ptr);
 			fail_reason = WAIT_QOS_THRES;
 		}
-	} else if (fail_reason == WAIT_NO_REASON) {
+	}
+	if (fail_reason == WAIT_NO_REASON) {
 		/*
 		 * Here we need to pretend we are just submitting the job so we
 		 * can utilize the already existing function _valid_pn_min_mem.
