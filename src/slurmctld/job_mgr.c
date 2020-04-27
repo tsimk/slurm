@@ -6852,9 +6852,10 @@ extern int job_limits_check(job_record_t **job_pptr, bool check_min_time)
 			break;
 		}
 	}
-	if (fail_reason == WAIT_NO_REASON && qos_ptr && assoc_ptr &&
-		   (qos_ptr->flags & QOS_FLAG_ENFORCE_USAGE_THRES) &&
-		   (!fuzzy_equal(qos_ptr->usage_thres, NO_VAL))) {
+	if ((fail_reason == WAIT_NO_REASON) &&
+	    qos_ptr && assoc_ptr &&
+	    (qos_ptr->flags & QOS_FLAG_ENFORCE_USAGE_THRES) &&
+	    (!fuzzy_equal(qos_ptr->usage_thres, NO_VAL))) {
 		if (!job_ptr->prio_factors) {
 			job_ptr->prio_factors =
 				xmalloc(sizeof(priority_factors_object_t));
@@ -6918,14 +6919,14 @@ extern int job_limits_check(job_record_t **job_pptr, bool check_min_time)
 			detail_ptr->pn_min_cpus = job_desc.pn_min_cpus;
 		}
 	}
-	if (fail_reason == WAIT_NO_REASON &&
-	    part_ptr->state_up == PARTITION_DOWN) {
+	if ((fail_reason == WAIT_NO_REASON) &&
+	    (part_ptr->state_up == PARTITION_DOWN)) {
 		debug2("%pJ requested down partition %s",
 		       job_ptr, part_ptr->name);
 		fail_reason = WAIT_PART_DOWN;
 	}
-	if (fail_reason == WAIT_NO_REASON &&
-	    part_ptr->state_up == PARTITION_INACTIVE) {
+	if ((fail_reason == WAIT_NO_REASON) &&
+	    (part_ptr->state_up == PARTITION_INACTIVE)) {
 		debug2("%pJ requested inactive partition %s",
 		       job_ptr, part_ptr->name);
 		fail_reason = WAIT_PART_INACTIVE;
