@@ -29,6 +29,8 @@ documents those changes that are of interest to users and administrators.
  -- Fix thread-safety issue with assoc_mgr_get_admin_level().
  -- Ignore step features if equal to job features
  -- Fix slurmstepd segfault caused by incorrect strtok() usage.
+ -- Fix {Min|Max}Per{CPU|NODE} checks when partition is down at submission or
+    modify.
 
 * Changes in Slurm 20.02.5
 ==========================
