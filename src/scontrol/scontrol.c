@@ -1075,8 +1075,6 @@ static int _process_command (int argc, char **argv)
 				error_code = scontrol_hold(argv[0], argv[i]);
 				if (error_code) {
 					exit_code = 1;
-					if (quiet_flag != 1)
-						slurm_perror("slurm_suspend error");
 				}
 			}
 			(void) scontrol_hold(argv[0], NULL);   /* Clear cache */
