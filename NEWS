@@ -57,6 +57,8 @@ documents those changes that are of interest to users and administrators.
  -- slurmrestd - use errno from job submission.
  -- Fix "user" filter for sacctmgr show transactions.
  -- Fix preemption logic.
+ -- Fix regression in 20.02 that caused an infinite loop in slurmctld when
+    requesting --distribution=plane for the job.
 
 * Changes in Slurm 20.02.3
 ==========================
