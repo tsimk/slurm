@@ -1,4 +1,4 @@
-.TH scontrol "1" "Slurm Commands" "August 2020" "Slurm Commands"
+.TH scontrol "1" "Slurm Commands" "September 2020" "Slurm Commands"
 
 .SH "NAME"
 scontrol \- view or modify Slurm configuration and state.
@@ -194,7 +194,7 @@ isn't specified.
 If the "nextstate" option is specified
 as "DOWN", then the node will remain in a down state after rebooting. If
 "nextstate" is specified as "RESUME", then the nodes will resume as normal
-when the node registers and the node's reason and "DRAIN" state will be cleared.
+and the node's reason and "DRAIN" state will be cleared.
 Resuming nodes will be considered as available in
 backfill future scheduling and won't be replaced by idle nodes in a reservation.
 The "reason" option sets each node's reason to a user-defined message.
