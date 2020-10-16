@@ -8094,6 +8094,13 @@ extern void gres_plugin_job_core_filter3(gres_mc_data_t *mc_ptr,
 				 __func__);
 			continue;
 		}
+		if (*max_tasks_this_node < *min_tasks_this_node) {
+			error("%s: min_tasks_this_node:%d > max_tasks_this_node:%d",
+			      __func__,
+			      *min_tasks_this_node,
+			      *max_tasks_this_node);
+
+		}
 
 		/*
 		 * Determine how many cores are needed for this job.
