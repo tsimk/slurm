@@ -52,7 +52,8 @@ if [ -n "$status" ]; then
     # Fork a child so sleep is asynchronous.
     {
         sleep 60
-        $SEFF $jobid | $MAIL -s "$subject" $recipient
+        #$SEFF $jobid | $MAIL -s "$subject" $recipient
+	echo "sefff $jobid" | $MAIL -s "$subject" $recipient 
     } &
 else
     $MAIL -s "$subject" $recipient
